@@ -1,0 +1,17 @@
+[
+	{
+		"Name": "Firstname",
+		"Type": "varchar",
+		"Length": "50"
+	},
+	{
+		"Name": "Surname",
+		"Type": "varchar",
+		"Length": "50"
+	},
+	{
+		"Name": "IdNumber",
+		"Type": "varchar",
+		"Length": "12"
+	}
+]
