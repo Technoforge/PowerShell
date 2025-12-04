@@ -1,5 +1,5 @@
 # SCRIPT: Diffie-Hellman-example.ps1
-# PURPOSE: Demonstrate an understanding of the Diffie-Hellman key exchange.
+# PURPOSE: Demonstrate an understanding of the Diffie-Hellman key exchange. No, I can't do the mathemagic off the top of my head.
 
 ##########################################################################################################
 
@@ -14,8 +14,8 @@ $PrivateA = 0     # Player1 private key
 $PrivateB = 0     # Player2 private key
 $PublicA = 0      # Player1 public value
 $PublicB = 0      # Player2 public value
-$Secret1 = 0      # Megatron’s derived shared key
-$Secret2 = 0      # Starscream’s derived shared key
+$Secret1 = 0      # Megatronâ€™s derived shared key
+$Secret2 = 0      # Starscreamâ€™s derived shared key
 
 ##########################################################################################################
 # PRIME CHECK FUNCTION
@@ -68,9 +68,9 @@ function Generate-Random-Integer {
 }
 
 ##########################################################################################################
-# MAIN – DIFFIE HELLMAN DEMO
+# MAIN â€“ DIFFIE HELLMAN DEMO
 
-Write-Host "`n Diffie-Hellman exchange demo`n"
+Write-Host "`nDiffie-Hellman exchange demo`n"
 
 # 1. Generate prime modulus p
 $PrimeP = Generate-Prime-Number -Min 11 -Max $Throttle
@@ -84,30 +84,30 @@ Write-Host "Shared generator g = $GeneratorG"
 $PrivateA = Generate-Random-Integer -Min 2 -Max $Throttle
 $PrivateB = Generate-Random-Integer -Min 2 -Max $Throttle
 Write-Host "`nPrivate keys:"
-Write-Host "  $Player1name private key a = $PrivateA"
-Write-Host "  $Player2name private key b = $PrivateB"
+Write-Host "- $Player1name private key a = $PrivateA"
+Write-Host "- $Player2name private key b = $PrivateB"
 
 # 4. Generate public keys A = g^a mod p, B = g^b mod p
 $PublicA = [System.Numerics.BigInteger]::ModPow($GeneratorG, $PrivateA, $PrimeP)
 $PublicB = [System.Numerics.BigInteger]::ModPow($GeneratorG, $PrivateB, $PrimeP)
 
 Write-Host "`nPublic values exchanged:"
-Write-Host "  $Player1name sends A = $PublicA"
-Write-Host "  $Player2name sends B = $PublicB"
+Write-Host "- $Player1name sends A = $PublicA"
+Write-Host "- $Player2name sends B = $PublicB"
 
 # 5. Compute shared secret
 $Secret1 = [System.Numerics.BigInteger]::ModPow($PublicB, $PrivateA, $PrimeP)
 $Secret2 = [System.Numerics.BigInteger]::ModPow($PublicA, $PrivateB, $PrimeP)
 
 Write-Host "`nShared secret computation:"
-Write-Host "  $Player1name computes s1 = $Secret1"
-Write-Host "  $Player2name computes s2 = $Secret2"
+Write-Host "- $Player1name computes s1 = $Secret1"
+Write-Host "- $Player2name computes s2 = $Secret2"
 
 Write-Host "`nFinal result:"
 if ($Secret1 -eq $Secret2) {
-    Write-Host "Shared secret MATCHES: $Secret1"
+    Write-Host "Shared secret MATCHES: $Secret1. $Player1name and $Player2name are allies."
 } else {
-    Write-Host "ERROR — secrets do NOT match!"
+    Write-Host "ERROR â€” secrets do NOT match! $Player1name and $Player2name are enemies!"
 }
 
 Write-Host "`n"
